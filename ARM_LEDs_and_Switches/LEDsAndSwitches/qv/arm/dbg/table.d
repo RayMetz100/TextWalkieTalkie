@@ -1,0 +1,17 @@
+.\dbg\table.o: ..\..\table.c
+.\dbg\table.o: C:\qp\qpc\include\qpc.h
+.\dbg\table.o: C:\qp\qpc\ports\arm-cm\qv\arm\qf_port.h
+.\dbg\table.o: C:\qp\qpc\ports\arm-cm\qv\arm\qep_port.h
+.\dbg\table.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\dbg\table.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\dbg\table.o: C:\qp\qpc\include\qep.h
+.\dbg\table.o: C:\qp\qpc\ports\arm-cm\qv\arm\qv_port.h
+.\dbg\table.o: C:\qp\qpc\include\qv.h
+.\dbg\table.o: C:\qp\qpc\include\qequeue.h
+.\dbg\table.o: C:\qp\qpc\include\qmpool.h
+.\dbg\table.o: C:\qp\qpc\include\qpset.h
+.\dbg\table.o: C:\qp\qpc\include\qf.h
+.\dbg\table.o: C:\qp\qpc\include\qassert.h
+.\dbg\table.o: C:\qp\qpc\include\qs_dummy.h
+.\dbg\table.o: ..\..\dpp.h
+.\dbg\table.o: ..\..\bsp.h
