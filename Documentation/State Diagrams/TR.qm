@@ -5,56 +5,44 @@
   <class name="TR" superclass="qpc::QMActive">
    <statechart>
     <initial target="../1">
-     <initial_glyph conn="4,4,4,3,10,2">
+     <initial_glyph conn="4,4,4,3,4,2">
       <action box="0,-2,10,2"/>
      </initial_glyph>
     </initial>
-    <state name="Idle">
-     <tran trig="TxKeyPressed" target="../../3">
-      <tran_glyph conn="54,22,2,0,6">
-       <action box="0,-2,10,2"/>
+    <state name="On">
+     <tran trig="RxIRQ" target="..">
+      <action brief="Rx"/>
+      <tran_glyph conn="10,12,2,2,7,10,-7">
+       <action box="-3,-3,10,2"/>
       </tran_glyph>
      </tran>
-     <tran trig="RxIRQ" target="../../2">
-      <tran_glyph conn="10,22,2,0,6">
-       <action box="0,-2,10,2"/>
+     <tran trig="KeyIRQ">
+      <choice target="../..">
+       <guard brief="KeyTx"/>
+       <action brief="Tx"/>
+       <choice_glyph conn="40,19,5,2,-16,-7">
+        <action box="-15,-3,10,2"/>
+       </choice_glyph>
+      </choice>
+      <choice target="../..">
+       <guard brief="KeyChar"/>
+       <action brief="ProcessChar"/>
+       <choice_glyph conn="40,19,5,2,22,-7">
+        <action box="6,-3,19,2"/>
+       </choice_glyph>
+      </choice>
+      <choice>
+       <guard brief="KeyOff"/>
+       <action brief="PowerOff"/>
+       <choice_glyph conn="40,19,4,-1,5">
+        <action box="-6,6,15,2"/>
+       </choice_glyph>
+      </choice>
+      <tran_glyph conn="40,12,2,-1,7">
+       <action box="-3,-3,10,2"/>
       </tran_glyph>
      </tran>
-     <tran trig="OffKeyPressed">
-      <tran_glyph conn="68,16,1,-1,10">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <tran trig="CharIRQ" target="../../4">
-      <tran_glyph conn="32,22,2,0,6">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="6,10,62,12"/>
-    </state>
-    <state name="Rx">
-     <tran trig="Done" target="../../1">
-      <tran_glyph conn="20,28,0,2,-6">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="6,28,18,12"/>
-    </state>
-    <state name="Tx">
-     <tran trig="Done" target="../../1">
-      <tran_glyph conn="64,28,0,2,-6">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="50,28,18,12"/>
-    </state>
-    <state name="ProcessChar">
-     <tran trig="Done" target="../../1">
-      <tran_glyph conn="42,28,0,2,-6">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="28,28,18,12"/>
+     <state_glyph node="6,4,62,8"/>
     </state>
     <state_diagram size="80,50"/>
    </statechart>
