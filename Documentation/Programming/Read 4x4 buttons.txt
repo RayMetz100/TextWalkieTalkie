@@ -1,0 +1,30 @@
+        float low
+         check for high
+            INPUT
+         0  1  2  3
+         |  |  |  |
+
+GPIO4 -
+
+GPIO5 -
+
+GPIO6 -
+
+GPIO7 -
+
+OUTPUT high, start low
+
+
+int8 QueryOneButton(int8 Button){
+if (Button == B1)
+{
+int x;
+GPIO4 = High;
+x = GPIO0;
+if (x == high)
+  return 1
+else
+return 0
+}
+
+}
