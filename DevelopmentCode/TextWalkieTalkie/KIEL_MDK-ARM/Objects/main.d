@@ -1,0 +1,17 @@
+.\objects\main.o: ..\myProgram\main.c
+.\objects\main.o: C:\qp\qpc\include\qpc.h
+.\objects\main.o: C:\qp\qpc\ports\arm-cm\qv\arm\qf_port.h
+.\objects\main.o: C:\qp\qpc\ports\arm-cm\qv\arm\qep_port.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: C:\qp\qpc\include\qep.h
+.\objects\main.o: C:\qp\qpc\ports\arm-cm\qv\arm\qv_port.h
+.\objects\main.o: C:\qp\qpc\include\qv.h
+.\objects\main.o: C:\qp\qpc\include\qequeue.h
+.\objects\main.o: C:\qp\qpc\include\qmpool.h
+.\objects\main.o: C:\qp\qpc\include\qpset.h
+.\objects\main.o: C:\qp\qpc\include\qf.h
+.\objects\main.o: C:\qp\qpc\include\qassert.h
+.\objects\main.o: C:\qp\qpc\include\qs_dummy.h
+.\objects\main.o: ..\myProgram\blinky.h
+.\objects\main.o: ..\myBoardSupport\bsp.h
