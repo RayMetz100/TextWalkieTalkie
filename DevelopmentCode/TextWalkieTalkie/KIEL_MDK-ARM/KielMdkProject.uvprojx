@@ -84,6 +84,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
@@ -147,7 +149,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -161,7 +163,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -170,12 +172,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -196,7 +198,7 @@
             <ldmm>1</ldmm>
             <ldXref>1</ldXref>
             <BigEnd>0</BigEnd>
-            <AdsALst>1</AdsALst>
+            <AdsALst>0</AdsALst>
             <AdsACrf>1</AdsACrf>
             <AdsANop>0</AdsANop>
             <AdsANot>0</AdsANot>
@@ -361,11 +363,13 @@
             <uSurpInc>1</uSurpInc>
             <uC99>0</uC99>
             <useXO>0</useXO>
+            <v6Lang>0</v6Lang>
+            <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>C:\qp\qpc\include;C:\qp\qpc\ports\arm-cm\qv\arm;..\myBoardSupport;..\myProgram;..\CMSIS\Include;..\STMicroelectronics\STM32L0xx\Include;..\STMicroelectronics\STM32L0xx\Source\Templates\arm;..\STMicroelectronics\STM32L0xx\Source\Templates</IncludePath>
+              <IncludePath>..\STMicroelectronics\STM32L0xx\Include;..\STMicroelectronics\STM32L0xx\Source\Templates\arm;..\STMicroelectronics\STM32L0xx\Source\Templates;..\CMSIS\Include;..\myBoardSupport;..\myProgram;..\qp\qpc\include;..\qp\qpc\source;..\qp\qpc\ports\arm-cm\qv\arm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -413,36 +417,46 @@
               <FileType>1</FileType>
               <FilePath>..\myProgram\main.c</FilePath>
             </File>
-            <File>
-              <FileName>blinky.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\myProgram\blinky.h</FilePath>
-            </File>
-            <File>
-              <FileName>blinky.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\myProgram\blinky.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>myBoardSupport</GroupName>
           <Files>
             <File>
-              <FileName>bsp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\myBoardSupport\bsp.h</FilePath>
-            </File>
-            <File>
               <FileName>bsp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\myBoardSupport\bsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\myBoardSupport\bsp.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>STMicroelectronics</GroupName>
           <Files>
+            <File>
+              <FileName>stm32l0xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\STMicroelectronics\STM32L0xx\Include\stm32l0xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l053xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\STMicroelectronics\STM32L0xx\Include\stm32l053xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32l0xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STMicroelectronics\STM32L0xx\Source\Templates\system_stm32l0xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32l0xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\STMicroelectronics\STM32L0xx\Include\system_stm32l0xx.h</FilePath>
+            </File>
             <File>
               <FileName>startup_stm32l053xx.s</FileName>
               <FileType>2</FileType>
@@ -457,6 +471,106 @@
               <FileName>core_cm0plus.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\CMSIS\Include\core_cm0plus.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>QP</GroupName>
+          <Files>
+            <File>
+              <FileName>qep_hsm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qep_hsm.c</FilePath>
+            </File>
+            <File>
+              <FileName>qep_msm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qep_msm.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_act.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_act.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_actq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_actq.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_defer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_defer.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_dyn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_dyn.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_pkg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\qp\qpc\source\qf_pkg.h</FilePath>
+            </File>
+            <File>
+              <FileName>qf_ps.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_ps.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_qact.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_qact.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_qeq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_qeq.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_qmact.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_qmact.c</FilePath>
+            </File>
+            <File>
+              <FileName>qf_time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qf_time.c</FilePath>
+            </File>
+            <File>
+              <FileName>qv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\qp\qpc\source\qv.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>QP_port</GroupName>
+          <Files>
+            <File>
+              <FileName>qep_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h</FilePath>
+            </File>
+            <File>
+              <FileName>qf_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h</FilePath>
+            </File>
+            <File>
+              <FileName>qs_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\qp\qpc\ports\arm-cm\qv\arm\qs_port.h</FilePath>
+            </File>
+            <File>
+              <FileName>qv_port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\qp\qpc\ports\arm-cm\qv\arm\qv_port.h</FilePath>
             </File>
           </Files>
         </Group>

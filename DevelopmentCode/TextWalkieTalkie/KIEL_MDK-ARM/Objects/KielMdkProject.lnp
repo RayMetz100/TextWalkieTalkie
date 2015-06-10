@@ -1,7 +1,22 @@
 --cpu Cortex-M0+
 ".\objects\main.o"
-".\objects\blinky.o"
 ".\objects\bsp.o"
---ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+".\objects\system_stm32l0xx.o"
+".\objects\startup_stm32l053xx.o"
+".\objects\qep_hsm.o"
+".\objects\qep_msm.o"
+".\objects\qf_act.o"
+".\objects\qf_actq.o"
+".\objects\qf_defer.o"
+".\objects\qf_dyn.o"
+".\objects\qf_mem.o"
+".\objects\qf_ps.o"
+".\objects\qf_qact.o"
+".\objects\qf_qeq.o"
+".\objects\qf_qmact.o"
+".\objects\qf_time.o"
+".\objects\qv.o"
+--strict --scatter ".\Objects\KielMdkProject.sct"
+--entry Reset_Handler --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\KielMdkProject.map" -o .\Objects\KielMdkProject.axf

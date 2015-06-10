@@ -1,0 +1,15 @@
+.\objects\qk.o: ..\qp\qpc\source\qk.c
+.\objects\qk.o: ..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h
+.\objects\qk.o: ..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h
+.\objects\qk.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\qk.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\qk.o: ..\qp\qpc\include\qep.h
+.\objects\qk.o: ..\qp\qpc\ports\arm-cm\qv\arm\qv_port.h
+.\objects\qk.o: ..\qp\qpc\include\qv.h
+.\objects\qk.o: ..\qp\qpc\include\qequeue.h
+.\objects\qk.o: ..\qp\qpc\include\qmpool.h
+.\objects\qk.o: ..\qp\qpc\include\qpset.h
+.\objects\qk.o: ..\qp\qpc\include\qf.h
+.\objects\qk.o: ..\qp\qpc\source\qk_pkg.h
+.\objects\qk.o: ..\qp\qpc\include\qassert.h
+.\objects\qk.o: ..\qp\qpc\include\qs_dummy.h

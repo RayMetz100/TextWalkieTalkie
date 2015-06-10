@@ -96,31 +96,16 @@
         </Book>
         <Book>
           <Number>3</Number>
-          <Title>User Manual (NUCLEO-L053R8)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.3.0\Documents\DM00105823.pdf</Path>
+          <Title>STM32L053-Discovery Web Page (STM32L053-Discovery)</Title>
+          <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1848/PF260319</Path>
         </Book>
         <Book>
           <Number>4</Number>
-          <Title>Overview (NUCLEO-L053R8)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.3.0\Documents\DM00105918.pdf</Path>
-        </Book>
-        <Book>
-          <Number>5</Number>
-          <Title>Getting started (NUCLEO-L053R8)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.3.0\Documents\DM00105925.pdf</Path>
-        </Book>
-        <Book>
-          <Number>6</Number>
-          <Title>Schematics (NUCLEO-L053R8)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.3.0\Documents\MB1136.pdf</Path>
-        </Book>
-        <Book>
-          <Number>7</Number>
           <Title>STM32 Nucleo board (NUCLEO-L053R8)</Title>
           <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1847/PF260001</Path>
         </Book>
         <Book>
-          <Number>8</Number>
+          <Number>5</Number>
           <Title>STM32L053-Discovery Web Page (STM32L053-Discovery)</Title>
           <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1848/PF260319</Path>
         </Book>
@@ -147,7 +132,7 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>1</nTsel>
+        <nTsel>11</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -158,7 +143,7 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\UL2CM3.DLL</pMon>
+        <pMon>STLink\ST-LINKIII-KEIL_SWO.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
@@ -199,12 +184,13 @@
       </DebugFlag>
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
+      <bLintAuto>0</bLintAuto>
     </TargetOption>
   </Target>
 
   <Group>
     <GroupName>myProgram</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -221,32 +207,6 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\myProgram\blinky.h</PathWithFileName>
-      <FilenameWithoutPath>blinky.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>3</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\myProgram\blinky.c</PathWithFileName>
-      <FilenameWithoutPath>blinky.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
   </Group>
 
   <Group>
@@ -257,20 +217,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>4</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\myBoardSupport\bsp.h</PathWithFileName>
-      <FilenameWithoutPath>bsp.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <FileNumber>2</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -281,17 +228,82 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>3</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\myBoardSupport\bsp.h</PathWithFileName>
+      <FilenameWithoutPath>bsp.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
     <GroupName>STMicroelectronics</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>3</GroupNumber>
+      <FileNumber>4</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\STMicroelectronics\STM32L0xx\Include\stm32l0xx.h</PathWithFileName>
+      <FilenameWithoutPath>stm32l0xx.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\STMicroelectronics\STM32L0xx\Include\stm32l053xx.h</PathWithFileName>
+      <FilenameWithoutPath>stm32l053xx.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
       <FileNumber>6</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\STMicroelectronics\STM32L0xx\Source\Templates\system_stm32l0xx.c</PathWithFileName>
+      <FilenameWithoutPath>system_stm32l0xx.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>7</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\STMicroelectronics\STM32L0xx\Include\system_stm32l0xx.h</PathWithFileName>
+      <FilenameWithoutPath>system_stm32l0xx.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>8</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -306,13 +318,13 @@
 
   <Group>
     <GroupName>CMSIS</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <FileNumber>9</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -320,6 +332,256 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\CMSIS\Include\core_cm0plus.h</PathWithFileName>
       <FilenameWithoutPath>core_cm0plus.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>QP</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>10</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qep_hsm.c</PathWithFileName>
+      <FilenameWithoutPath>qep_hsm.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>11</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qep_msm.c</PathWithFileName>
+      <FilenameWithoutPath>qep_msm.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>12</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_act.c</PathWithFileName>
+      <FilenameWithoutPath>qf_act.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>13</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_actq.c</PathWithFileName>
+      <FilenameWithoutPath>qf_actq.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>14</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_defer.c</PathWithFileName>
+      <FilenameWithoutPath>qf_defer.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>15</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_dyn.c</PathWithFileName>
+      <FilenameWithoutPath>qf_dyn.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>16</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_mem.c</PathWithFileName>
+      <FilenameWithoutPath>qf_mem.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>17</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_pkg.h</PathWithFileName>
+      <FilenameWithoutPath>qf_pkg.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>18</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_ps.c</PathWithFileName>
+      <FilenameWithoutPath>qf_ps.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>19</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_qact.c</PathWithFileName>
+      <FilenameWithoutPath>qf_qact.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>20</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_qeq.c</PathWithFileName>
+      <FilenameWithoutPath>qf_qeq.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>21</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_qmact.c</PathWithFileName>
+      <FilenameWithoutPath>qf_qmact.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>22</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qf_time.c</PathWithFileName>
+      <FilenameWithoutPath>qf_time.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>23</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\source\qv.c</PathWithFileName>
+      <FilenameWithoutPath>qv.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>QP_port</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>24</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h</PathWithFileName>
+      <FilenameWithoutPath>qep_port.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>25</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h</PathWithFileName>
+      <FilenameWithoutPath>qf_port.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>26</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\ports\arm-cm\qv\arm\qs_port.h</PathWithFileName>
+      <FilenameWithoutPath>qs_port.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>27</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\qp\qpc\ports\arm-cm\qv\arm\qv_port.h</PathWithFileName>
+      <FilenameWithoutPath>qv_port.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

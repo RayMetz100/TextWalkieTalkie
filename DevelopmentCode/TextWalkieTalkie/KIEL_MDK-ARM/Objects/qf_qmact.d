@@ -1,0 +1,13 @@
+.\objects\qf_qmact.o: ..\qp\qpc\source\qf_qmact.c
+.\objects\qf_qmact.o: ..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h
+.\objects\qf_qmact.o: ..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h
+.\objects\qf_qmact.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\qf_qmact.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qep.h
+.\objects\qf_qmact.o: ..\qp\qpc\ports\arm-cm\qv\arm\qv_port.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qv.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qequeue.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qmpool.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qpset.h
+.\objects\qf_qmact.o: ..\qp\qpc\include\qf.h
+.\objects\qf_qmact.o: ..\qp\qpc\source\qf_pkg.h

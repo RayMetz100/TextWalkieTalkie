@@ -1,0 +1,6 @@
+downloaded from:
+st.com search for STM32SnippetsL0
+http://www.st.com/web/catalog/tools/FM147/CL1794/SC961/SS1743/LN1898/PF260788
+
+Note:
+startup_stm32l053xx.s has been modified for this project.  Compare this code carefully with what you download from ST.com

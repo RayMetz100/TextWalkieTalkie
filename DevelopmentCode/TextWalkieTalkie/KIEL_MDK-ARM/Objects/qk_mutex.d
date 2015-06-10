@@ -1,0 +1,14 @@
+.\objects\qk_mutex.o: ..\qp\qpc\source\qk_mutex.c
+.\objects\qk_mutex.o: ..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h
+.\objects\qk_mutex.o: ..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h
+.\objects\qk_mutex.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\qk_mutex.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qep.h
+.\objects\qk_mutex.o: ..\qp\qpc\ports\arm-cm\qv\arm\qv_port.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qv.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qequeue.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qmpool.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qpset.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qf.h
+.\objects\qk_mutex.o: ..\qp\qpc\source\qk_pkg.h
+.\objects\qk_mutex.o: ..\qp\qpc\include\qs_dummy.h

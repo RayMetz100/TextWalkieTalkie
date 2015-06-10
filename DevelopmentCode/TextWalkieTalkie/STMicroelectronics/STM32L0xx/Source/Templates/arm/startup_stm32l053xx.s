@@ -1,8 +1,20 @@
-;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;*****************************************************************************
+; Modified from the original as follows:
+; - removed Stack_Size and Heap_Size EQUs, so that they need to be provided
+;   externally in command-line options to the assembler without messing up
+;   with this file
+; - replaced endless loops in exception handlers (denial of service) with
+;   branches to assert_failed
+; - provided definitions of assert_failed and Q_onAssert
+;
+;
+; Quantum Leaps, LLC; www.state-machine.com
+; 2015-03-24
+;******************** (C) COPYRIGHT 2014 STMicroelectronics ********************
 ;* File Name          : startup_stm32l053xx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.2.0
-;* Date               : 06-February-2015
+;* Version            : V1.0.0RC1
+;* Date               : 15-April-2014
 ;* Description        : STM32l053xx Devices vector table for MDK-ARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -12,9 +24,9 @@
 ;*                        calls main()).
 ;*                      After Reset the Cortex-M0+ processor is in Thread mode,
 ;*                      priority is Privileged, and the Stack is set to Main.
-;* <<< Use Configuration Wizard in Context Menu >>>   
+;* <<< Use Configuration Wizard in Context Menu >>>
 ;*******************************************************************************
-;* 
+;*
 ;* Redistribution and use in source and binary forms, with or without modification,
 ;* are permitted provided that the following conditions are met:
 ;*   1. Redistributions of source code must retain the above copyright notice,
@@ -45,7 +57,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size      EQU     0x00000400
+; QL: commeted out Stack_Size      EQU     0x00000400
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -56,7 +68,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size       EQU     0x00000200
+; QL: commeted out Heap_Size       EQU     0x00000200
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
@@ -73,133 +85,161 @@ __heap_limit
                 EXPORT  __Vectors_End
                 EXPORT  __Vectors_Size
 
-__Vectors       DCD     __initial_sp              ; Top of Stack
-                DCD     Reset_Handler             ; Reset Handler
-                DCD     NMI_Handler               ; NMI Handler
-                DCD     HardFault_Handler         ; Hard Fault Handler
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     0                         ; Reserved
-                DCD     SVC_Handler               ; SVCall Handler
-                DCD     DebugMon_Handler          ; Debug Monitor Handler
-                DCD     0                         ; Reserved
-                DCD     PendSV_Handler            ; PendSV Handler
-                DCD     SysTick_Handler           ; SysTick Handler
+__Vectors
+        DCD     __initial_sp              ; Top of Stack
+        DCD     Reset_Handler             ; Reset Handler
+        DCD     NMI_Handler               ; NMI Handler
+        DCD     HardFault_Handler         ; Hard Fault Handler
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     0                         ; Reserved
+        DCD     SVC_Handler               ; SVCall Handler
+        DCD     DebugMon_Handler          ; Debug Monitor Handler
+        DCD     0                         ; Reserved
+        DCD     PendSV_Handler            ; PendSV Handler
+        DCD     SysTick_Handler           ; SysTick Handler
 
-                ; External Interrupts
-                DCD     WWDG_IRQHandler                ; Window Watchdog
-                DCD     PVD_IRQHandler                 ; PVD through EXTI Line detect
-                DCD     RTC_IRQHandler                 ; RTC through EXTI Line
-                DCD     FLASH_IRQHandler               ; FLASH
-                DCD     RCC_CRS_IRQHandler             ; RCC and CRS
-                DCD     EXTI0_1_IRQHandler             ; EXTI Line 0 and 1
-                DCD     EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
-                DCD     EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
-                DCD     TSC_IRQHandler                 ; TSC
-                DCD     DMA1_Channel1_IRQHandler       ; DMA1 Channel 1
-                DCD     DMA1_Channel2_3_IRQHandler     ; DMA1 Channel 2 and Channel 3
-                DCD     DMA1_Channel4_5_6_7_IRQHandler ; DMA1 Channel 4, Channel 5, Channel 6 and Channel 7
-                DCD     ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 
-                DCD     LPTIM1_IRQHandler              ; LPTIM1
-                DCD     0                              ; Reserved
-                DCD     TIM2_IRQHandler                ; TIM2
-                DCD     0                              ; Reserved
-                DCD     TIM6_DAC_IRQHandler            ; TIM6 and DAC
-                DCD     0                              ; Reserved
-                DCD     0                              ; Reserved
-                DCD     TIM21_IRQHandler               ; TIM21
-                DCD     0                              ; Reserved
-                DCD     TIM22_IRQHandler               ; TIM22
-                DCD     I2C1_IRQHandler                ; I2C1
-                DCD     I2C2_IRQHandler                ; I2C2
-                DCD     SPI1_IRQHandler                ; SPI1
-                DCD     SPI2_IRQHandler                ; SPI2
-                DCD     USART1_IRQHandler              ; USART1
-                DCD     USART2_IRQHandler              ; USART2
-                DCD     RNG_LPUART1_IRQHandler         ; RNG and LPUART1
-                DCD     LCD_IRQHandler                 ; LCD
-                DCD     USB_IRQHandler                 ; USB
-                
+        ; IRQ handlers...
+        DCD     WWDG_IRQHandler                ; Window Watchdog
+        DCD     PVD_IRQHandler                 ; PVD through EXTI Line detect
+        DCD     RTC_IRQHandler                 ; RTC through EXTI Line
+        DCD     FLASH_IRQHandler               ; FLASH
+        DCD     RCC_CRS_IRQHandler             ; RCC and CRS
+        DCD     EXTI0_1_IRQHandler             ; EXTI Line 0 and 1
+        DCD     EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
+        DCD     EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
+        DCD     TSC_IRQHandler                 ; TSC
+        DCD     DMA1_Channel1_IRQHandler       ; DMA1 Channel 1
+        DCD     DMA1_Channel2_3_IRQHandler     ; DMA1 Channel 2 and Channel 3
+        DCD     DMA1_Channel4_5_6_7_IRQHandler ; DMA1 Channel 4, 5, 6 and 7
+        DCD     ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2
+        DCD     LPTIM1_IRQHandler              ; LPTIM1
+        DCD     0                              ; Reserved
+        DCD     TIM2_IRQHandler                ; TIM2
+        DCD     0                              ; Reserved
+        DCD     TIM6_DAC_IRQHandler            ; TIM6 and DAC
+        DCD     0                              ; Reserved
+        DCD     0                              ; Reserved
+        DCD     TIM21_IRQHandler               ; TIM21
+        DCD     0                              ; Reserved
+        DCD     TIM22_IRQHandler               ; TIM22
+        DCD     I2C1_IRQHandler                ; I2C1
+        DCD     I2C2_IRQHandler                ; I2C2
+        DCD     SPI1_IRQHandler                ; SPI1
+        DCD     SPI2_IRQHandler                ; SPI2
+        DCD     USART1_IRQHandler              ; USART1
+        DCD     USART2_IRQHandler              ; USART2
+        DCD     RNG_LPUART1_IRQHandler         ; RNG and LPUART1
+        DCD     LCD_IRQHandler                 ; LCD
+        DCD     USB_IRQHandler                 ; USB
+
 __Vectors_End
 
 __Vectors_Size  EQU  __Vectors_End - __Vectors
 
+
+;******************************************************************************
+;
+; Weak fault handlers...
+;
                 AREA    |.text|, CODE, READONLY
 
-; Reset handler routine
+;.............................................................................
 Reset_Handler    PROC
-                 EXPORT  Reset_Handler                 [WEAK]
+        EXPORT  Reset_Handler                 [WEAK]
         IMPORT  __main
-        IMPORT  SystemInit  
-                 LDR     R0, =SystemInit
-                 BLX     R0
-                 LDR     R0, =__main
-                 BX      R0
-                 ENDP
-
-; Dummy Exception Handlers (infinite loops which can be modified)
-
+        IMPORT  SystemInit
+        LDR     R0, =SystemInit
+        BLX     R0
+        LDR     R0, =__main
+        BX      R0
+        ENDP
+;.............................................................................
 NMI_Handler     PROC
-                EXPORT  NMI_Handler                    [WEAK]
-                B       .
-                ENDP
-HardFault_Handler\
-                PROC
-                EXPORT  HardFault_Handler              [WEAK]
-                B       .
-                ENDP
-SVC_Handler     PROC
-                EXPORT  SVC_Handler                    [WEAK]
-                B       .
-                ENDP
-DebugMon_Handler\
-                PROC
-                EXPORT  DebugMon_Handler               [WEAK]
-                B       .
-                ENDP
-PendSV_Handler  PROC
-                EXPORT  PendSV_Handler                 [WEAK]
-                B       .
-                ENDP
+        EXPORT  NMI_Handler     [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#2       ; NMI exception number
+        B       assert_failed
+        ENDP
+;.............................................................................
+HardFault_Handler PROC
+        EXPORT  HardFault_Handler [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#3       ; HardFault exception number
+        B       assert_failed
+        ENDP
+
+
+;******************************************************************************
+;
+; Weak non-fault handlers...
+;
+;******************************************************************************
+SVC_Handler PROC
+        EXPORT  SVC_Handler   [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#11      ; SVCall exception number
+        B       assert_failed
+        ENDP
+;.............................................................................
+DebugMon_Handler PROC
+        EXPORT  DebugMon_Handler     [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#12      ; DebugMon exception number
+        B       assert_failed
+        ENDP
+;.............................................................................
+PendSV_Handler PROC
+        EXPORT  PendSV_Handler       [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#14      ; PendSV exception number
+        B       assert_failed
+        ENDP
+;.............................................................................
 SysTick_Handler PROC
-                EXPORT  SysTick_Handler                [WEAK]
-                B       .
-                ENDP
+        EXPORT  SysTick_Handler     [WEAK]
+        MOVS    r0,#0
+        MOVS    r1,#15      ; SysTick exception number
+        B       assert_failed
+        ENDP
 
+;******************************************************************************
+;
+; Define Default_Handledr as dummy for all IRQ handlers
+;
+;******************************************************************************
 Default_Handler PROC
-
-                EXPORT  WWDG_IRQHandler                [WEAK]
-                EXPORT  PVD_IRQHandler                 [WEAK]
-                EXPORT  RTC_IRQHandler                 [WEAK]
-                EXPORT  FLASH_IRQHandler               [WEAK]
-                EXPORT  RCC_CRS_IRQHandler             [WEAK]
-                EXPORT  EXTI0_1_IRQHandler             [WEAK]
-                EXPORT  EXTI2_3_IRQHandler             [WEAK]
-                EXPORT  EXTI4_15_IRQHandler            [WEAK]
-                EXPORT  TSC_IRQHandler                  [WEAK]
-                EXPORT  DMA1_Channel1_IRQHandler       [WEAK]
-                EXPORT  DMA1_Channel2_3_IRQHandler     [WEAK]
-                EXPORT  DMA1_Channel4_5_6_7_IRQHandler [WEAK]
-                EXPORT  ADC1_COMP_IRQHandler           [WEAK]
-                EXPORT  LPTIM1_IRQHandler              [WEAK]
-                EXPORT  TIM2_IRQHandler                [WEAK]
-                EXPORT  TIM6_DAC_IRQHandler            [WEAK]
-                EXPORT  TIM21_IRQHandler               [WEAK]
-                EXPORT  TIM22_IRQHandler               [WEAK]
-                EXPORT  I2C1_IRQHandler                [WEAK]
-                EXPORT  I2C2_IRQHandler                [WEAK]
-                EXPORT  SPI1_IRQHandler                [WEAK]
-                EXPORT  SPI2_IRQHandler                [WEAK]
-                EXPORT  USART1_IRQHandler              [WEAK]
-                EXPORT  USART2_IRQHandler              [WEAK]
-                EXPORT  RNG_LPUART1_IRQHandler         [WEAK]
-                EXPORT  LCD_IRQHandler                 [WEAK]
-                EXPORT  USB_IRQHandler                 [WEAK]
-
+        EXPORT  WWDG_IRQHandler                [WEAK]
+        EXPORT  PVD_IRQHandler                 [WEAK]
+        EXPORT  RTC_IRQHandler                 [WEAK]
+        EXPORT  FLASH_IRQHandler               [WEAK]
+        EXPORT  RCC_CRS_IRQHandler             [WEAK]
+        EXPORT  EXTI0_1_IRQHandler             [WEAK]
+        EXPORT  EXTI2_3_IRQHandler             [WEAK]
+        EXPORT  EXTI4_15_IRQHandler            [WEAK]
+        EXPORT  TSC_IRQHandler                 [WEAK]
+        EXPORT  DMA1_Channel1_IRQHandler       [WEAK]
+        EXPORT  DMA1_Channel2_3_IRQHandler     [WEAK]
+        EXPORT  DMA1_Channel4_5_6_7_IRQHandler [WEAK]
+        EXPORT  ADC1_COMP_IRQHandler           [WEAK]
+        EXPORT  LPTIM1_IRQHandler              [WEAK]
+        EXPORT  TIM2_IRQHandler                [WEAK]
+        EXPORT  TIM6_DAC_IRQHandler            [WEAK]
+        EXPORT  TIM21_IRQHandler               [WEAK]
+        EXPORT  TIM22_IRQHandler               [WEAK]
+        EXPORT  I2C1_IRQHandler                [WEAK]
+        EXPORT  I2C2_IRQHandler                [WEAK]
+        EXPORT  SPI1_IRQHandler                [WEAK]
+        EXPORT  SPI2_IRQHandler                [WEAK]
+        EXPORT  USART1_IRQHandler              [WEAK]
+        EXPORT  USART2_IRQHandler              [WEAK]
+        EXPORT  RNG_LPUART1_IRQHandler         [WEAK]
+        EXPORT  LCD_IRQHandler                 [WEAK]
+        EXPORT  USB_IRQHandler                 [WEAK]
 
 WWDG_IRQHandler
 PVD_IRQHandler
@@ -213,7 +253,7 @@ TSC_IRQHandler
 DMA1_Channel1_IRQHandler
 DMA1_Channel2_3_IRQHandler
 DMA1_Channel4_5_6_7_IRQHandler
-ADC1_COMP_IRQHandler 
+ADC1_COMP_IRQHandler
 LPTIM1_IRQHandler
 TIM2_IRQHandler
 TIM6_DAC_IRQHandler
@@ -228,39 +268,75 @@ USART2_IRQHandler
 RNG_LPUART1_IRQHandler
 LCD_IRQHandler
 USB_IRQHandler
+        MOVS    r0,#0
+        MOVS    r1,#0xFF
+        B       assert_failed
+        ENDP
 
-                B       .
-
-                ENDP
-
-                ALIGN
+        ALIGN
 
 ;*******************************************************************************
 ; User Stack and Heap initialization
 ;*******************************************************************************
-                 IF      :DEF:__MICROLIB
-                
-                 EXPORT  __initial_sp
-                 EXPORT  __heap_base
-                 EXPORT  __heap_limit
-                
-                 ELSE
-                
-                 IMPORT  __use_two_region_memory
-                 EXPORT  __user_initial_stackheap
-                 
+        IF      :DEF:__MICROLIB
+
+        EXPORT  __initial_sp
+        EXPORT  __heap_base
+        EXPORT  __heap_limit
+
+        ELSE
+
+        IMPORT  __use_two_region_memory
+        EXPORT  __user_initial_stackheap
+
 __user_initial_stackheap
 
-                 LDR     R0, =  Heap_Mem
-                 LDR     R1, =(Stack_Mem + Stack_Size)
-                 LDR     R2, = (Heap_Mem +  Heap_Size)
-                 LDR     R3, = Stack_Mem
-                 BX      LR
+        LDR     R0, =  Heap_Mem
+        LDR     R1, =(Stack_Mem + Stack_Size)
+        LDR     R2, = (Heap_Mem +  Heap_Size)
+        LDR     R3, = Stack_Mem
+        BX      LR
 
-                 ALIGN
+        ALIGN
 
-                 ENDIF
+        ENDIF
 
-                 END
+
+;******************************************************************************
+;
+; The functions assert_failed/Q_onAssert define the error/assertion
+; handling policy for the application and might need to be customized
+; for each project. These functions are defined in assembly to avoid
+; accessing the stack, which might be corrupted by the time assert_failed
+; is called. For now the function just resets the CPU.
+;
+; NOTE: the functions assert_failed/Q_onAssert should NOT return.
+;
+; The C proptotypes of these functions are as follows:
+; void assert_failed(char const *file, int line);
+; void Q_onAssert   (char const *file, int line);
+;******************************************************************************
+        EXPORT  assert_failed
+        EXPORT  Q_onAssert
+assert_failed PROC
+Q_onAssert
+        ;
+        ; NOTE: add here your application-specific error handling
+        ;
+
+        ; the following code implements the CMIS function
+        ; NVIC_SystemReset() from core_cm4.h
+        ; Leave this code if you wish to reset the system after an error.
+        DSB                      ; ensure all memory access complete
+        LDR    r0,=0x05FA0004    ; (0x5FA << SCB_AIRCR_VECTKEY_Pos)
+                                 ; | (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk)
+                                 ; | SCB_AIRCR_SYSRESETREQ_Msk
+        LDR    r1,=0xE000ED0C    ; address of SCB->AIRCR
+        STR    r0,[r1]           ; r0 -> SCB->AIRCR
+        DSB                      ; ensure all memory access complete
+        B      .                 ; wait until reset occurs
+        ENDP
+
+        END
 
 ;************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE*****
