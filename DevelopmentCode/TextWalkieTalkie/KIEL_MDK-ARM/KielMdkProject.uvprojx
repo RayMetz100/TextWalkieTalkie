@@ -78,14 +78,12 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>fromelf --bin --output .\Objects\KielMdkProject.bin .\Objects\KielMdkProject.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
-            <nStopA1X>0</nStopA1X>
-            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
@@ -363,8 +361,6 @@
             <uSurpInc>1</uSurpInc>
             <uC99>0</uC99>
             <useXO>0</useXO>
-            <v6Lang>0</v6Lang>
-            <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -416,6 +412,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\myProgram\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>blinky.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\myProgram\blinky.c</FilePath>
             </File>
           </Files>
         </Group>

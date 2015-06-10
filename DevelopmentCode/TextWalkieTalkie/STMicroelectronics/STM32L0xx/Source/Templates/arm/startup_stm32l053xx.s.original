@@ -1,15 +1,3 @@
-;*****************************************************************************
-; Modified from the original as follows:
-; - removed Stack_Size and Heap_Size EQUs, so that they need to be provided
-;   externally in command-line options to the assembler without messing up
-;   with this file
-; - replaced endless loops in exception handlers (denial of service) with
-;   branches to assert_failed
-; - provided definitions of assert_failed and Q_onAssert
-;
-;
-; Quantum Leaps, LLC; www.state-machine.com
-; 2015-03-24
 ;******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
 ;* File Name          : startup_stm32l053xx.s
 ;* Author             : MCD Application Team
@@ -57,7 +45,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-; Stack_Size      EQU     0x00000400
+Stack_Size      EQU     0x00000400
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -68,7 +56,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-; Heap_Size       EQU     0x00000200
+Heap_Size       EQU     0x00000200
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
@@ -157,41 +145,29 @@ Reset_Handler    PROC
 
 NMI_Handler     PROC
                 EXPORT  NMI_Handler                    [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#2       ; NMI exception number
-        B       assert_failed
+                B       .
                 ENDP
 HardFault_Handler\
                 PROC
                 EXPORT  HardFault_Handler              [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#3       ; HardFault exception number
-        B       assert_failed
+                B       .
                 ENDP
 SVC_Handler     PROC
                 EXPORT  SVC_Handler                    [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#11      ; SVCall exception number
-        B       assert_failed
+                B       .
                 ENDP
 DebugMon_Handler\
                 PROC
                 EXPORT  DebugMon_Handler               [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#12      ; DebugMon exception number
-        B       assert_failed
+                B       .
                 ENDP
 PendSV_Handler  PROC
                 EXPORT  PendSV_Handler                 [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#14      ; PendSV exception number
-        B       assert_failed
+                B       .
                 ENDP
 SysTick_Handler PROC
                 EXPORT  SysTick_Handler                [WEAK]
-        MOVS    r0,#0
-        MOVS    r1,#15      ; SysTick exception number
-        B       assert_failed
+                B       .
                 ENDP
 
 Default_Handler PROC
@@ -252,9 +228,9 @@ USART2_IRQHandler
 RNG_LPUART1_IRQHandler
 LCD_IRQHandler
 USB_IRQHandler
-        MOVS    r0,#0
-        MOVS    r1,#0xFF
-        B       assert_failed
+
+                B       .
+
                 ENDP
 
                 ALIGN
@@ -285,40 +261,6 @@ __user_initial_stackheap
 
                  ENDIF
 
-;******************************************************************************
-;
-; The functions assert_failed/Q_onAssert define the error/assertion
-; handling policy for the application and might need to be customized
-; for each project. These functions are defined in assembly to avoid
-; accessing the stack, which might be corrupted by the time assert_failed
-; is called. For now the function just resets the CPU.
-;
-; NOTE: the functions assert_failed/Q_onAssert should NOT return.
-;
-; The C proptotypes of these functions are as follows:
-; void assert_failed(char const *file, int line);
-; void Q_onAssert   (char const *file, int line);
-;******************************************************************************
-        EXPORT  assert_failed
-        EXPORT  Q_onAssert
-assert_failed PROC
-Q_onAssert
-        ;
-        ; NOTE: add here your application-specific error handling
-        ;
-
-        ; the following code implements the CMIS function
-        ; NVIC_SystemReset() from core_cm4.h
-        ; Leave this code if you wish to reset the system after an error.
-        DSB                      ; ensure all memory access complete
-        LDR    r0,=0x05FA0004    ; (0x5FA << SCB_AIRCR_VECTKEY_Pos)
-                                 ; | (SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk)
-                                 ; | SCB_AIRCR_SYSRESETREQ_Msk
-        LDR    r1,=0xE000ED0C    ; address of SCB->AIRCR
-        STR    r0,[r1]           ; r0 -> SCB->AIRCR
-        DSB                      ; ensure all memory access complete
-        B      .                 ; wait until reset occurs
-        ENDP
                  END
 
 ;************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE*****

@@ -1,5 +1,6 @@
 --cpu Cortex-M0+
 ".\objects\main.o"
+".\objects\blinky.o"
 ".\objects\bsp.o"
 ".\objects\system_stm32l0xx.o"
 ".\objects\startup_stm32l053xx.o"
@@ -17,6 +18,7 @@
 ".\objects\qf_time.o"
 ".\objects\qv.o"
 --strict --scatter ".\Objects\KielMdkProject.sct"
+
 --entry Reset_Handler --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\KielMdkProject.map" -o .\Objects\KielMdkProject.axf
