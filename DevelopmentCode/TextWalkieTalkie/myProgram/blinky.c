@@ -156,22 +156,28 @@ QState Blinky_0(Blinky * const me, QEvt const * const e)
     switch (e->sig) {
         case Q_ENTRY_SIG: {
 					
-					  //if(myButton() == 1)
-            BSP_ledAOn(0U);
-            BSP_ledBOff(0U);
-            BSP_ledCOff(0U);
-            BSP_ledDOff(0U);
-            BSP_ledEOff(0U);
+				  	BSP_buttonR0On();
 					
-            BSP_led0On(0U);
-            BSP_led1Off(0U);
-            BSP_led2Off(0U);
-            BSP_led3Off(0U);
-            BSP_led4Off(0U);
-            BSP_led5Off(0U);
-            BSP_led6Off(0U);
-            BSP_led7Off(0U);
+					  if(BSP_buttonCS1() == 1)
+              BSP_ledAOn();
+						else
+							BSP_ledAOff();
+            BSP_ledBOff();
+            BSP_ledCOff();
+            BSP_ledDOff();
+            BSP_ledEOff();
 					
+					  if(BSP_buttonCS1() == 1)
+              BSP_led0On();
+						else
+							BSP_led0Off();
+            BSP_led1Off();
+            BSP_led2Off();
+            BSP_led3Off();
+            BSP_led4Off();
+            BSP_led5Off();
+            BSP_led6Off();
+            BSP_led7Off();
 
             status = Q_HANDLED();
 
@@ -209,20 +215,22 @@ QState Blinky_1(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-            BSP_ledAOff(0U);
-            BSP_ledBOff(0U);
-            BSP_ledCOff(0U);
-            BSP_ledDOn(0U);
-            BSP_ledEOn(0U);
+				  	BSP_buttonR0Off();
+
+  					BSP_ledAOff();
+            BSP_ledBOff();
+            BSP_ledCOff();
+            BSP_ledDOn();
+            BSP_ledEOn();
 					
-            BSP_led0On(0U);
-            BSP_led1On(0U);
-            BSP_led2Off(0U);
-            BSP_led3Off(0U);
-            BSP_led4Off(0U);
-            BSP_led5Off(0U);
-            BSP_led6Off(0U);
-            BSP_led7Off(0U);
+            BSP_led0On();
+            BSP_led1On();
+            BSP_led2Off();
+            BSP_led3Off();
+            BSP_led4Off();
+            BSP_led5Off();
+            BSP_led6Off();
+            BSP_led7Off();
 
 
             status = Q_HANDLED();
@@ -266,20 +274,20 @@ QState Blinky_4(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-            BSP_ledAOff(0U);
-            BSP_ledBOff(0U);
-            BSP_ledCOn(0U);
-            BSP_ledDOn(0U);
-            BSP_ledEOn(0U);
+            BSP_ledAOff();
+            BSP_ledBOff();
+            BSP_ledCOn();
+            BSP_ledDOn();
+            BSP_ledEOn();
 					
-            BSP_led0Off(0U);
-            BSP_led1Off(0U);
-            BSP_led2Off(0U);
-            BSP_led3Off(0U);
-            BSP_led4Off(0U);
-            BSP_led5On(0U);
-            BSP_led6On(0U);
-            BSP_led7On(0U);
+            BSP_led0Off();
+            BSP_led1Off();
+            BSP_led2Off();
+            BSP_led3Off();
+            BSP_led4Off();
+            BSP_led5On();
+            BSP_led6On();
+            BSP_led7On();
 
 
             status = Q_HANDLED();
@@ -323,20 +331,20 @@ QState Blinky_5(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-            BSP_ledAOn(0U);
-            BSP_ledBOn(0U);
-            BSP_ledCOn(0U);
-            BSP_ledDOn(0U);
-            BSP_ledEOff(0U);
+            BSP_ledAOn();
+            BSP_ledBOn();
+            BSP_ledCOn();
+            BSP_ledDOn();
+            BSP_ledEOff();
 					
-            BSP_led0Off(0U);
-            BSP_led1Off(0U);
-            BSP_led2Off(0U);
-            BSP_led3Off(0U);
-            BSP_led4On(0U);
-            BSP_led5On(0U);
-            BSP_led6On(0U);
-            BSP_led7On(0U);
+            BSP_led0Off();
+            BSP_led1Off();
+            BSP_led2Off();
+            BSP_led3Off();
+            BSP_led4On();
+            BSP_led5On();
+            BSP_led6On();
+            BSP_led7On();
 
 
             status = Q_HANDLED();

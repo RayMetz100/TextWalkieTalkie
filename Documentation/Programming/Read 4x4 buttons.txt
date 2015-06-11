@@ -1,30 +1,47 @@
+output Push pull
+input pull down
+
+
+• Input floating  00
+• Input pull-up   01  a resistor connected to high 
+• Input-pull-down 10   a resistor connected to low 
+
+Mode = 00
+
         float low
          check for high
             INPUT
-         0  1  2  3
+         4  5  6  7
          |  |  |  |
 
-GPIO4 -
+GPIO0 -
 
-GPIO5 -
+GPIO1 -
 
-GPIO6 -
+GPIO2 -
 
-GPIO7 -
+GPIO3 -
+like an LED
+OUTPUT high, start low, pull down
 
-OUTPUT high, start low
+Mode 01
 
+open-drain OTYPER = 1
+Open drain mode: A “0” in the Output register activates the N-MOS whereas a “1”
+in the Output register leaves the port in Hi-Z (the P-MOS is never activated)
 
-int8 QueryOneButton(int8 Button){
-if (Button == B1)
-{
-int x;
-GPIO4 = High;
-x = GPIO0;
-if (x == high)
-  return 1
-else
-return 0
-}
+0 goes to ground
+1 goes to Hi-Z
 
-}
+PUPD
+00 = OD        a transistor connects to low and nothing else
+01 = OD + PU   a transistor connects to low, and a resistor connects to high 
+10 = OD + PD
+
+push-pull OTYPER = 0
+Push-pull mode: A “0” in the Output register activates the N-MOS whereas a “1” in
+the Output register activates the P-MOS
+PUPD
+00 = PP         a transistor connects to high, and a transistor connects to low (only one is operated at a time)
+01 = PP + PU
+10 = PP + PD

@@ -37,39 +37,41 @@
 #define BSP_TICKS_PER_SEC    100U
 
 void BSP_init(void);
-void BSP_ledAOff(uint_fast8_t n);
-void BSP_ledAOn (uint_fast8_t n);
-void BSP_ledBOff(uint_fast8_t n);
-void BSP_ledBOn (uint_fast8_t n);
-void BSP_ledCOff(uint_fast8_t n);
-void BSP_ledCOn (uint_fast8_t n);
-void BSP_ledDOff(uint_fast8_t n);
-void BSP_ledDOn (uint_fast8_t n);
-void BSP_ledEOff(uint_fast8_t n);
-void BSP_ledEOn (uint_fast8_t n);
+void BSP_ledAOff(void);
+void BSP_ledAOn (void);
+void BSP_ledBOff(void);
+void BSP_ledBOn (void);
+void BSP_ledCOff(void);
+void BSP_ledCOn (void);
+void BSP_ledDOff(void);
+void BSP_ledDOn (void);
+void BSP_ledEOff(void);
+void BSP_ledEOn (void);
 
-void BSP_led0Off(uint_fast8_t n);
-void BSP_led0On (uint_fast8_t n);
-void BSP_led1Off(uint_fast8_t n);
-void BSP_led1On (uint_fast8_t n);
-void BSP_led2Off(uint_fast8_t n);
-void BSP_led2On (uint_fast8_t n);
-void BSP_led3Off(uint_fast8_t n);
-void BSP_led3On (uint_fast8_t n);
-void BSP_led4Off(uint_fast8_t n);
-void BSP_led4On (uint_fast8_t n);
-void BSP_led5Off(uint_fast8_t n);
-void BSP_led5On (uint_fast8_t n);
-void BSP_led6Off(uint_fast8_t n);
-void BSP_led6On (uint_fast8_t n);
-void BSP_led7Off(uint_fast8_t n);
-void BSP_led7On (uint_fast8_t n);
+void BSP_led0Off(void);
+void BSP_led0On (void);
+void BSP_led1Off(void);
+void BSP_led1On (void);
+void BSP_led2Off(void);
+void BSP_led2On (void);
+void BSP_led3Off(void);
+void BSP_led3On (void);
+void BSP_led4Off(void);
+void BSP_led4On (void);
+void BSP_led5Off(void);
+void BSP_led5On (void);
+void BSP_led6Off(void);
+void BSP_led6On (void);
+void BSP_led7Off(void);
+void BSP_led7On (void);
 
 
-int BSP_buttonR0(void);
-int BSP_buttonR1(void);
-int BSP_buttonR2(void);
-int BSP_buttonR3(void);
+void BSP_buttonR0Off(void);
+void BSP_buttonR0On(void);
+
+void BSP_buttonR1(void);
+void BSP_buttonR2(void);
+void BSP_buttonR3(void);
 
 int BSP_buttonCS1(void);
 int BSP_buttonCS2(void);

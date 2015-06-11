@@ -245,17 +245,26 @@ void BSP_init(void) {
     /* enable GPIOB clock port */
     RCC->IOPENR |= (1U << 1);
 
-    /* Configure Button (PB.0) pins as input, no pull-up, pull-down */
-    GPIOB->MODER   &= ~(3UL << 2*0);  //clear+- the mode  00: Input mode
-    GPIOB->OSPEEDR &= ~(3UL << 2*0);  // clear the speed
-    GPIOB->OSPEEDR |=  (1UL << 2*0);  // speed = 01
-    GPIOB->PUPDR   &= ~(3UL << 2*0);  // clear the pupd.  00: No pull-up, pull-down
+    /* configure Button Row 1-4 output (PB.0) pin as push-pull output, no pull-up, pull-down */
+    GPIOB->MODER   &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00s out the bits that were there.  keeps all others (not reset state)
+    GPIOB->MODER   |=  ((1U << 2*0)); // 01: General purpose output mode
+		
+    GPIOB->OTYPER  &= ~((1U <<   0)); // clear. 0  out the bits that were there.  (0: Output push-pull, reset state)
+    //GPIOB->OTYPER  |=  ((1U <<   0)); // set type = 1: Output open drain
+		
+    GPIOB->OSPEEDR &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00: Very low speed) unknown reset state
+    GPIOB->OSPEEDR |=  ((1U << 2*0)); // 01: Low speeed
+		
+    GPIOB->PUPDR   &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00: No pull-up, pull-down) unknown reset state
+    //GPIOB->PUPDR   |=  ((1U << 2*0)); // Output-pull-up 01
 
-    /* Configure Button (PB.4) pins as input, no pull-up, pull-down */
+
+    /* Configure Button column S1,S13 as input, (PB.4), no pull-up, pull-down */
     GPIOB->MODER   &= ~(3UL << 2*4);  //clear+- the mode  00: Input mode
     GPIOB->OSPEEDR &= ~(3UL << 2*4);  // clear the speed
     GPIOB->OSPEEDR |=  (1UL << 2*4);  // speed = 01
     GPIOB->PUPDR   &= ~(3UL << 2*4);  // clear the pupd.  00: No pull-up, pull-down
+    //GPIOB->PUPDR   |=  (2UL << 2*4);  // Input-pull-down 10
 
 
 
@@ -271,41 +280,52 @@ void BSP_init(void) {
     QS_OBJ_DICTIONARY(&l_SysTick_Handler);
 }
 /*..........................................................................*/
-void BSP_ledAOff(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_8      );}  /* turn LED off */
-void BSP_ledAOn (uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_8 << 16);}  /* turn LED on  */
-void BSP_ledBOff(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_9      );}  /* turn LED off */
-void BSP_ledBOn (uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_9 << 16);}  /* turn LED on  */
-void BSP_ledCOff(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_10      );}  /* turn LED off */
-void BSP_ledCOn (uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_10 << 16);}  /* turn LED on  */
-void BSP_ledDOff(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_11      );}  /* turn LED off */
-void BSP_ledDOn (uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_11 << 16);}  /* turn LED on  */
-void BSP_ledEOff(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_12      );}  /* turn LED off */
-void BSP_ledEOn (uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_12 << 16);}  /* turn LED on  */
+void BSP_ledAOff() {GPIOC->BSRR |= (PORT_PIN_8      );}  /* turn LED off */
+void BSP_ledAOn () {GPIOC->BSRR |= (PORT_PIN_8 << 16);}  /* turn LED on  */
+void BSP_ledBOff() {GPIOC->BSRR |= (PORT_PIN_9      );}  /* turn LED off */
+void BSP_ledBOn () {GPIOC->BSRR |= (PORT_PIN_9 << 16);}  /* turn LED on  */
+void BSP_ledCOff() {GPIOC->BSRR |= (PORT_PIN_10      );}  /* turn LED off */
+void BSP_ledCOn () {GPIOC->BSRR |= (PORT_PIN_10 << 16);}  /* turn LED on  */
+void BSP_ledDOff() {GPIOC->BSRR |= (PORT_PIN_11      );}  /* turn LED off */
+void BSP_ledDOn () {GPIOC->BSRR |= (PORT_PIN_11 << 16);}  /* turn LED on  */
+void BSP_ledEOff() {GPIOC->BSRR |= (PORT_PIN_12      );}  /* turn LED off */
+void BSP_ledEOn () {GPIOC->BSRR |= (PORT_PIN_12 << 16);}  /* turn LED on  */
 
-void BSP_led0Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_0 << 16);}  /* turn LED off */
-void BSP_led0On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_0       ;}  /* turn LED on  */
-void BSP_led1Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_1 << 16);}  /* turn LED off */
-void BSP_led1On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_1       ;}  /* turn LED on  */
-void BSP_led2Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_2 << 16);}  /* turn LED off */
-void BSP_led2On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_2       ;}  /* turn LED on  */
-void BSP_led3Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_3 << 16);}  /* turn LED off */
-void BSP_led3On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_3       ;}  /* turn LED on  */
-void BSP_led4Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_4 << 16);}  /* turn LED off */
-void BSP_led4On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_4       ;}  /* turn LED on  */
-void BSP_led5Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_5 << 16);}  /* turn LED off */
-void BSP_led5On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_5       ;}  /* turn LED on  */
-void BSP_led6Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_6 << 16);}  /* turn LED off */
-void BSP_led6On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_6       ;}  /* turn LED on  */
-void BSP_led7Off(uint_fast8_t n) {GPIOC->BSRR |= (PORT_PIN_7 << 16);}  /* turn LED off */
-void BSP_led7On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_7       ;}  /* turn LED on  */
+void BSP_led0Off() {GPIOC->BSRR |= (PORT_PIN_0 << 16);}  /* turn LED off */
+void BSP_led0On () {GPIOC->BSRR |=  PORT_PIN_0       ;}  /* turn LED on  */
+void BSP_led1Off() {GPIOC->BSRR |= (PORT_PIN_1 << 16);}  /* turn LED off */
+void BSP_led1On () {GPIOC->BSRR |=  PORT_PIN_1       ;}  /* turn LED on  */
+void BSP_led2Off() {GPIOC->BSRR |= (PORT_PIN_2 << 16);}  /* turn LED off */
+void BSP_led2On () {GPIOC->BSRR |=  PORT_PIN_2       ;}  /* turn LED on  */
+void BSP_led3Off() {GPIOC->BSRR |= (PORT_PIN_3 << 16);}  /* turn LED off */
+void BSP_led3On () {GPIOC->BSRR |=  PORT_PIN_3       ;}  /* turn LED on  */
+void BSP_led4Off() {GPIOC->BSRR |= (PORT_PIN_4 << 16);}  /* turn LED off */
+void BSP_led4On () {GPIOC->BSRR |=  PORT_PIN_4       ;}  /* turn LED on  */
+void BSP_led5Off() {GPIOC->BSRR |= (PORT_PIN_5 << 16);}  /* turn LED off */
+void BSP_led5On () {GPIOC->BSRR |=  PORT_PIN_5       ;}  /* turn LED on  */
+void BSP_led6Off() {GPIOC->BSRR |= (PORT_PIN_6 << 16);}  /* turn LED off */
+void BSP_led6On () {GPIOC->BSRR |=  PORT_PIN_6       ;}  /* turn LED on  */
+void BSP_led7Off() {GPIOC->BSRR |= (PORT_PIN_7 << 16);}  /* turn LED off */
+void BSP_led7On () {GPIOC->BSRR |=  PORT_PIN_7       ;}  /* turn LED on  */
 
+// button outputs
+//Push-pull mode: A “0” in the Output register activates the N-MOS whereas a “1” in
+//the Output register activates the P-MOS
+void BSP_buttonR0Off(){GPIOB->BSRR |= (PORT_PIN_0 << 16);} // blow it off the variable to the left.  leave all 0s?
+void BSP_buttonR0On (){GPIOB->BSRR |= (PORT_PIN_0      );}
 
-//int BSP_buttonR0(void);
-//int BSP_buttonR1(void);
-//int BSP_buttonR2(void);
-//int BSP_buttonR3(void);
-
-//int BSP_buttonCS1(void);
+int BSP_buttonCS1()
+{
+	int a = 0;
+	int r = 0;
+	r = GPIOB->IDR;
+	a = r & PORT_PIN_4;
+	
+	if (a == PORT_PIN_4)
+	  return 1; // button pressed
+  else
+	  return 0; // button not pressed
+};
 //int BSP_buttonCS2(void);
 //int BSP_buttonCS3(void);
 //int BSP_buttonCS4(void);
@@ -315,10 +335,19 @@ void BSP_led7On (uint_fast8_t n) {GPIOC->BSRR |=  PORT_PIN_7       ;}  /* turn L
 
 int myButton(void)
 {
-  if ((GPIOB->IDR & PORT_PIN_0) == PORT_PIN_0)
+	int a = 0;
+	int r = 0;
+	a =  GPIOB->IDR;
+	r = (a & PORT_PIN_0);
+	
+  if (r == PORT_PIN_0)
+	{
 	  return 1; // button pressed
+	}
   else
+	{
 	  return 0; // button not pressed
+	}
 }
 
 #define UNBOUNCE_CNT        5                     // unbounce the keys
