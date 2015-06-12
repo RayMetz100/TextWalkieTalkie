@@ -45,6 +45,8 @@ Contact information:
 #include "blinky.h"
 
 #include "bsp.h"
+#include "LEDFunctions.h"
+
 
 //Q_DEFINE_THIS_FILE
 
@@ -156,32 +158,18 @@ QState Blinky_0(Blinky * const me, QEvt const * const e)
     switch (e->sig) {
         case Q_ENTRY_SIG: {
 					
-				  	BSP_buttonR0On();
+					BSP_buttonR0Off();
+					LEDAllOff();
 					
-					  if(BSP_buttonCS1() == 1)
-              BSP_ledAOn();
-						else
-							BSP_ledAOff();
-            BSP_ledBOff();
-            BSP_ledCOff();
-            BSP_ledDOff();
-            BSP_ledEOff();
-					
-					  if(BSP_buttonCS1() == 1)
-              BSP_led0On();
-						else
-							BSP_led0Off();
-            BSP_led1Off();
-            BSP_led2Off();
-            BSP_led3Off();
-            BSP_led4Off();
-            BSP_led5Off();
-            BSP_led6Off();
-            BSP_led7Off();
+					BSP_buttonR0On();
+					if(BSP_buttonCS1() == 1)
+					{
+						LEDXYOnSingle(3,3);
+					}
 
-            status = Q_HANDLED();
+          status = Q_HANDLED();
 
-            break;
+          break;
 
         }
         case TIMEOUT_SIG: {
@@ -215,22 +203,17 @@ QState Blinky_1(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-				  	BSP_buttonR0Off();
-
-  					BSP_ledAOff();
-            BSP_ledBOff();
-            BSP_ledCOff();
-            BSP_ledDOn();
-            BSP_ledEOn();
+					LEDAllOff();
 					
-            BSP_led0On();
-            BSP_led1On();
-            BSP_led2Off();
-            BSP_led3Off();
-            BSP_led4Off();
-            BSP_led5Off();
-            BSP_led6Off();
-            BSP_led7Off();
+					LEDXYOnSingle(1,0);
+					
+					
+					BSP_buttonR0Off();
+//					if(BSP_buttonCS1() == 1)
+//					{
+//						BSP_ledEOn();
+//						BSP_led0On();
+//					}
 
 
             status = Q_HANDLED();
@@ -274,20 +257,15 @@ QState Blinky_4(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-            BSP_ledAOff();
-            BSP_ledBOff();
-            BSP_ledCOn();
-            BSP_ledDOn();
-            BSP_ledEOn();
+					LEDAllOff();
+					LEDXYOnSingle(1,1);
 					
-            BSP_led0Off();
-            BSP_led1Off();
-            BSP_led2Off();
-            BSP_led3Off();
-            BSP_led4Off();
-            BSP_led5On();
-            BSP_led6On();
-            BSP_led7On();
+//					BSP_buttonR0On();
+//					if(BSP_buttonCS1() == 1)
+//					{
+//						BSP_ledAOn();
+//						BSP_led0On();
+//					}
 
 
             status = Q_HANDLED();
@@ -331,20 +309,15 @@ QState Blinky_5(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
-            BSP_ledAOn();
-            BSP_ledBOn();
-            BSP_ledCOn();
-            BSP_ledDOn();
-            BSP_ledEOff();
+					LEDAllOff();
+					LEDXYOnSingle(0,1);
 					
-            BSP_led0Off();
-            BSP_led1Off();
-            BSP_led2Off();
-            BSP_led3Off();
-            BSP_led4On();
-            BSP_led5On();
-            BSP_led6On();
-            BSP_led7On();
+//					BSP_buttonR0On();
+//					if(BSP_buttonCS1() == 1)
+//					{
+//						BSP_ledAOn();
+//						BSP_led0On();
+//					}
 
 
             status = Q_HANDLED();

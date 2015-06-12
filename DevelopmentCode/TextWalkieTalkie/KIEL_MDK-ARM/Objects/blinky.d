@@ -15,3 +15,4 @@
 .\objects\blinky.o: ..\qp\qpc\include\qs_dummy.h
 .\objects\blinky.o: ..\myProgram\blinky.h
 .\objects\blinky.o: ..\myBoardSupport\bsp.h
+.\objects\blinky.o: ..\myProgram\LEDFunctions.h

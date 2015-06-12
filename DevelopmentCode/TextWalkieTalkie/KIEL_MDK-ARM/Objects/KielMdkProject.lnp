@@ -1,6 +1,7 @@
 --cpu Cortex-M0+
 ".\objects\main.o"
 ".\objects\blinky.o"
+".\objects\ledfunctions.o"
 ".\objects\bsp.o"
 ".\objects\system_stm32l0xx.o"
 ".\objects\startup_stm32l053xx.o"

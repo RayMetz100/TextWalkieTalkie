@@ -16,7 +16,7 @@ I (..\qp\qpc\include\qassert.h)(0x5577B2F0)
 I (..\qp\qpc\include\qs_dummy.h)(0x5577B2F0)
 I (..\myProgram\blinky.h)(0x55439A9E)
 I (..\myBoardSupport\bsp.h)(0x5579AA00)
-F (..\myProgram\blinky.c)(0x5579AA0D)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I..\STMicroelectronics\STM32L0xx\Include -I..\STMicroelectronics\STM32L0xx\Source\Templates\arm -I..\STMicroelectronics\STM32L0xx\Source\Templates -I..\CMSIS\Include -I..\myBoardSupport -I..\myProgram -I..\qp\qpc\include -I..\qp\qpc\source -I..\qp\qpc\ports\arm-cm\qv\arm -D__UVISION_VERSION="514" -DSTM32L053xx-o .\objects\blinky.o --omf_browse .\objects\blinky.crf --depend .\objects\blinky.d)
+F (..\myProgram\blinky.c)(0x557AEB99)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I..\STMicroelectronics\STM32L0xx\Include -I..\STMicroelectronics\STM32L0xx\Source\Templates\arm -I..\STMicroelectronics\STM32L0xx\Source\Templates -I..\CMSIS\Include -I..\myBoardSupport -I..\myProgram -I..\qp\qpc\include -I..\qp\qpc\source -I..\qp\qpc\ports\arm-cm\qv\arm -D__UVISION_VERSION="514" -DSTM32L053xx-o .\objects\blinky.o --omf_browse .\objects\blinky.crf --depend .\objects\blinky.d)
 I (..\qp\qpc\include\qpc.h)(0x5577B2F0)
 I (..\qp\qpc\ports\arm-cm\qv\arm\qf_port.h)(0x5577B2F0)
 I (..\qp\qpc\ports\arm-cm\qv\arm\qep_port.h)(0x5577B2F0)
@@ -32,6 +32,10 @@ I (..\qp\qpc\include\qf.h)(0x5577B2F0)
 I (..\qp\qpc\include\qassert.h)(0x5577B2F0)
 I (..\qp\qpc\include\qs_dummy.h)(0x5577B2F0)
 I (..\myProgram\blinky.h)(0x55439A9E)
+I (..\myBoardSupport\bsp.h)(0x5579AA00)
+I (..\myProgram\LEDFunctions.h)(0x557AE758)
+F (..\myProgram\LEDFunctions.c)(0x557AEB98)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I..\STMicroelectronics\STM32L0xx\Include -I..\STMicroelectronics\STM32L0xx\Source\Templates\arm -I..\STMicroelectronics\STM32L0xx\Source\Templates -I..\CMSIS\Include -I..\myBoardSupport -I..\myProgram -I..\qp\qpc\include -I..\qp\qpc\source -I..\qp\qpc\ports\arm-cm\qv\arm -D__UVISION_VERSION="514" -DSTM32L053xx-o .\objects\ledfunctions.o --omf_browse .\objects\ledfunctions.crf --depend .\objects\ledfunctions.d)
+I (..\myProgram\LEDFunctions.h)(0x557AE758)
 I (..\myBoardSupport\bsp.h)(0x5579AA00)
 F (..\myBoardSupport\bsp.c)(0x5579AA00)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections -I..\STMicroelectronics\STM32L0xx\Include -I..\STMicroelectronics\STM32L0xx\Source\Templates\arm -I..\STMicroelectronics\STM32L0xx\Source\Templates -I..\CMSIS\Include -I..\myBoardSupport -I..\myProgram -I..\qp\qpc\include -I..\qp\qpc\source -I..\qp\qpc\ports\arm-cm\qv\arm -D__UVISION_VERSION="514" -DSTM32L053xx-o .\objects\bsp.o --omf_browse .\objects\bsp.crf --depend .\objects\bsp.d)
 I (..\qp\qpc\include\qpc.h)(0x5577B2F0)
