@@ -46,6 +46,7 @@ Contact information:
 
 #include "bsp.h"
 #include "LEDFunctions.h"
+#include "ButtonFunctions.h"
 
 
 //Q_DEFINE_THIS_FILE
@@ -86,8 +87,8 @@ static QState Blinky_initial(Blinky * const me, QEvt const * const e);
 static QState Blinky_0     (Blinky * const me, QEvt const * const e);
 static QState Blinky_1     (Blinky * const me, QEvt const * const e);
 
-static QState Blinky_4     (Blinky * const me, QEvt const * const e);
-static QState Blinky_5     (Blinky * const me, QEvt const * const e);
+static QState Blinky_2     (Blinky * const me, QEvt const * const e);
+static QState Blinky_3     (Blinky * const me, QEvt const * const e);
 
 
 /*..........................................................................*/
@@ -158,14 +159,11 @@ QState Blinky_0(Blinky * const me, QEvt const * const e)
     switch (e->sig) {
         case Q_ENTRY_SIG: {
 					
-					BSP_buttonR0Off();
 					LEDAllOff();
 					
-					BSP_buttonR0On();
-					if(BSP_buttonCS1() == 1)
-					{
-						LEDXYOnSingle(3,3);
-					}
+					LEDXYOnSingle(0,0);
+					if(ButtonCheckPress(0,0) == 1)
+						LEDXYOnSingle(3,0);
 
           status = Q_HANDLED();
 
@@ -203,18 +201,11 @@ QState Blinky_1(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
+					
 					LEDAllOff();
-					
 					LEDXYOnSingle(1,0);
-					
-					
-					BSP_buttonR0Off();
-//					if(BSP_buttonCS1() == 1)
-//					{
-//						BSP_ledEOn();
-//						BSP_led0On();
-//					}
-
+					if(ButtonCheckPress(1,0) == 1)
+						LEDXYOnSingle(4,0);
 
             status = Q_HANDLED();
 
@@ -225,7 +216,7 @@ QState Blinky_1(Blinky * const me, QEvt const * const e)
         case TIMEOUT_SIG: 
         {
 
-            status = Q_TRAN(&Blinky_4);
+            status = Q_TRAN(&Blinky_2);
 
 
             break;
@@ -247,7 +238,7 @@ QState Blinky_1(Blinky * const me, QEvt const * const e)
 
 }
 
-QState Blinky_4(Blinky * const me, QEvt const * const e) 
+QState Blinky_2(Blinky * const me, QEvt const * const e) 
 {
 
     QState status;
@@ -257,17 +248,12 @@ QState Blinky_4(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
+					
 					LEDAllOff();
 					LEDXYOnSingle(1,1);
+					if(ButtonCheckPress(1,1) == 1)
+						LEDXYOnSingle(4,1);
 					
-//					BSP_buttonR0On();
-//					if(BSP_buttonCS1() == 1)
-//					{
-//						BSP_ledAOn();
-//						BSP_led0On();
-//					}
-
-
             status = Q_HANDLED();
 
             break;
@@ -277,7 +263,7 @@ QState Blinky_4(Blinky * const me, QEvt const * const e)
         case TIMEOUT_SIG: 
         {
 
-            status = Q_TRAN(&Blinky_5);
+            status = Q_TRAN(&Blinky_3);
 
 
             break;
@@ -299,7 +285,7 @@ QState Blinky_4(Blinky * const me, QEvt const * const e)
 
 }
 
-QState Blinky_5(Blinky * const me, QEvt const * const e) 
+QState Blinky_3(Blinky * const me, QEvt const * const e) 
 {
 
     QState status;
@@ -309,18 +295,13 @@ QState Blinky_5(Blinky * const me, QEvt const * const e)
 
         case Q_ENTRY_SIG: 
         {
+
 					LEDAllOff();
 					LEDXYOnSingle(0,1);
-					
-//					BSP_buttonR0On();
-//					if(BSP_buttonCS1() == 1)
-//					{
-//						BSP_ledAOn();
-//						BSP_led0On();
-//					}
+					if(ButtonCheckPress(0,1) == 1)
+						LEDXYOnSingle(3,1);
 
-
-            status = Q_HANDLED();
+					status = Q_HANDLED();
 
             break;
 

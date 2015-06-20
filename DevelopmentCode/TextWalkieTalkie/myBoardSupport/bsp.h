@@ -68,15 +68,18 @@ void BSP_led7On (void);
 
 void BSP_buttonR0Off(void);
 void BSP_buttonR0On(void);
+void BSP_buttonR1Off(void);
+void BSP_buttonR1On(void);
+void BSP_buttonR2Off(void);
+void BSP_buttonR2On(void);
+void BSP_buttonR3Off(void);
+void BSP_buttonR3On(void);
 
-void BSP_buttonR1(void);
-void BSP_buttonR2(void);
-void BSP_buttonR3(void);
 
+int BSP_buttonCS0(void);
 int BSP_buttonCS1(void);
 int BSP_buttonCS2(void);
 int BSP_buttonCS3(void);
-int BSP_buttonCS4(void);
 
 
 #endif /* bsp_h */

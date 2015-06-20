@@ -245,26 +245,60 @@ void BSP_init(void) {
     /* enable GPIOB clock port */
     RCC->IOPENR |= (1U << 1);
 
-    /* configure Button Row 1-4 output (PB.0) pin as push-pull output, no pull-up, pull-down */
+    /* configure Button Row 0 output (PB.0) pin as push-pull output, no pull-up, pull-down */
     GPIOB->MODER   &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00s out the bits that were there.  keeps all others (not reset state)
     GPIOB->MODER   |=  ((1U << 2*0)); // 01: General purpose output mode
-		
     GPIOB->OTYPER  &= ~((1U <<   0)); // clear. 0  out the bits that were there.  (0: Output push-pull, reset state)
-    //GPIOB->OTYPER  |=  ((1U <<   0)); // set type = 1: Output open drain
-		
+    GPIOB->OTYPER  |=  ((0U <<   0)); // set type = 0: Output push-pull, reset state
     GPIOB->OSPEEDR &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00: Very low speed) unknown reset state
     GPIOB->OSPEEDR |=  ((1U << 2*0)); // 01: Low speeed
-		
     GPIOB->PUPDR   &= ~((3U << 2*0)); // clear. 00 out the bits that were there.  (00: No pull-up, pull-down) unknown reset state
-    //GPIOB->PUPDR   |=  ((1U << 2*0)); // Output-pull-up 01
+    GPIOB->PUPDR   |=  ((0U << 2*0)); // set 00: No pull-up, pull-down
+
+    /* configure Button Row 0 output (PB.1) pin as push-pull output, no pull-up, pull-down */
+    GPIOB->MODER   &= ~((3U << 2*1)); // clear. 00 out the bits that were there.  (00s out the bits that were there.  keeps all others (not reset state)
+    GPIOB->MODER   |=  ((1U << 2*1)); // 01: General purpose output mode
+    GPIOB->OTYPER  &= ~((1U <<   1)); // clear. 0  out the bits that were there.  (0: Output push-pull, reset state)
+    GPIOB->OTYPER  |=  ((0U <<   1)); // set type = 0: Output push-pull, reset state
+    GPIOB->OSPEEDR &= ~((3U << 2*1)); // clear. 00 out the bits that were there.  (00: Very low speed) unknown reset state
+    GPIOB->OSPEEDR |=  ((1U << 2*1)); // 01: Low speeed
+    GPIOB->PUPDR   &= ~((3U << 2*1)); // clear. 00 out the bits that were there.  (00: No pull-up, pull-down) unknown reset state
+    GPIOB->PUPDR   |=  ((0U << 2*1)); // set 00: No pull-up, pull-down
+
+    /* configure Button Row 0 output (PB.2) pin as push-pull output, no pull-up, pull-down */
+    GPIOB->MODER   &= ~((3U << 2*2)); // clear. 00 out the bits that were there.  (00s out the bits that were there.  keeps all others (not reset state)
+    GPIOB->MODER   |=  ((1U << 2*2)); // 01: General purpose output mode
+    GPIOB->OTYPER  &= ~((1U <<   2)); // clear. 0  out the bits that were there.  (0: Output push-pull, reset state)
+    GPIOB->OTYPER  |=  ((0U <<   2)); // set type = 0: Output push-pull, reset state
+    GPIOB->OSPEEDR &= ~((3U << 2*2)); // clear. 00 out the bits that were there.  (00: Very low speed) unknown reset state
+    GPIOB->OSPEEDR |=  ((1U << 2*2)); // 01: Low speeed
+    GPIOB->PUPDR   &= ~((3U << 2*2)); // clear. 00 out the bits that were there.  (00: No pull-up, pull-down) unknown reset state
+    GPIOB->PUPDR   |=  ((0U << 2*2)); // set 00: No pull-up, pull-down
+
+    /* configure Button Row 0 output (PB.3) pin as push-pull output, no pull-up, pull-down */
+    GPIOB->MODER   &= ~((3U << 2*3)); // clear. 00 out the bits that were there.  (00s out the bits that were there.  keeps all others (not reset state)
+    GPIOB->MODER   |=  ((1U << 2*3)); // 01: General purpose output mode
+    GPIOB->OTYPER  &= ~((1U <<   3)); // clear. 0  out the bits that were there.  (0: Output push-pull, reset state)
+    GPIOB->OTYPER  |=  ((0U <<   3)); // set type = 0: Output push-pull, reset state
+    GPIOB->OSPEEDR &= ~((3U << 2*3)); // clear. 00 out the bits that were there.  (00: Very low speed) unknown reset state
+    GPIOB->OSPEEDR |=  ((1U << 2*3)); // 01: Low speeed
+    GPIOB->PUPDR   &= ~((3U << 2*3)); // clear. 00 out the bits that were there.  (00: No pull-up, pull-down) unknown reset state
+    GPIOB->PUPDR   |=  ((0U << 2*3)); // set 00: No pull-up, pull-down
 
 
-    /* Configure Button column S1,S13 as input, (PB.4), no pull-up, pull-down */
+    /* Configure Button column S1-S13 as input, (PB.4), no pull-up, pull-down */
     GPIOB->MODER   &= ~(3UL << 2*4);  //clear+- the mode  00: Input mode
     GPIOB->OSPEEDR &= ~(3UL << 2*4);  // clear the speed
     GPIOB->OSPEEDR |=  (1UL << 2*4);  // speed = 01
     GPIOB->PUPDR   &= ~(3UL << 2*4);  // clear the pupd.  00: No pull-up, pull-down
-    //GPIOB->PUPDR   |=  (2UL << 2*4);  // Input-pull-down 10
+    GPIOB->PUPDR   |=  (0UL << 2*4);  // set 00: No pull-up, pull-down
+
+/* Configure Button column S2-S14 as input, (PB.5), no pull-up, pull-down */
+    GPIOB->MODER   &= ~(3UL << 2*5);  //clear+- the mode  00: Input mode
+    GPIOB->OSPEEDR &= ~(3UL << 2*5);  // clear the speed
+    GPIOB->OSPEEDR |=  (1UL << 2*5);  // speed = 01
+    GPIOB->PUPDR   &= ~(3UL << 2*5);  // clear the pupd.  00: No pull-up, pull-down
+    GPIOB->PUPDR   |=  (0UL << 2*5);  // set 00: No pull-up, pull-down
 
 
 
@@ -313,8 +347,14 @@ void BSP_led7On () {GPIOC->BSRR |=  PORT_PIN_7       ;}  /* turn LED on  */
 //the Output register activates the P-MOS
 void BSP_buttonR0Off(){GPIOB->BSRR |= (PORT_PIN_0 << 16);} // blow it off the variable to the left.  leave all 0s?
 void BSP_buttonR0On (){GPIOB->BSRR |= (PORT_PIN_0      );}
+void BSP_buttonR1Off(){GPIOB->BSRR |= (PORT_PIN_1 << 16);} // blow it off the variable to the left.  leave all 0s?
+void BSP_buttonR1On (){GPIOB->BSRR |= (PORT_PIN_1      );}
+void BSP_buttonR2Off(){GPIOB->BSRR |= (PORT_PIN_2 << 16);} // blow it off the variable to the left.  leave all 0s?
+void BSP_buttonR2On (){GPIOB->BSRR |= (PORT_PIN_2      );}
+void BSP_buttonR3Off(){GPIOB->BSRR |= (PORT_PIN_3 << 16);} // blow it off the variable to the left.  leave all 0s?
+void BSP_buttonR3On (){GPIOB->BSRR |= (PORT_PIN_3      );}
 
-int BSP_buttonCS1()
+int BSP_buttonCS0()
 {
 	int a = 0;
 	int r = 0;
@@ -326,10 +366,42 @@ int BSP_buttonCS1()
   else
 	  return 0; // button not pressed
 };
-//int BSP_buttonCS2(void);
-//int BSP_buttonCS3(void);
-//int BSP_buttonCS4(void);
-
+int BSP_buttonCS1()
+{
+	int a = 0;
+	int r = 0;
+	r = GPIOB->IDR;
+	a = r & PORT_PIN_5;
+	
+	if (a == PORT_PIN_5)
+	  return 1; // button pressed
+  else
+	  return 0; // button not pressed
+};
+int BSP_buttonCS2()
+{
+	int a = 0;
+	int r = 0;
+	r = GPIOB->IDR;
+	a = r & PORT_PIN_6;
+	
+	if (a == PORT_PIN_6)
+	  return 1; // button pressed
+  else
+	  return 0; // button not pressed
+};
+int BSP_buttonCS3()
+{
+	int a = 0;
+	int r = 0;
+	r = GPIOB->IDR;
+	a = r & PORT_PIN_7;
+	
+	if (a == PORT_PIN_7)
+	  return 1; // button pressed
+  else
+	  return 0; // button not pressed
+};
 
 //#define BTN_B1   (1U << 13)
 

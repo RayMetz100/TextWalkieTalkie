@@ -16,3 +16,4 @@
 .\objects\blinky.o: ..\myProgram\blinky.h
 .\objects\blinky.o: ..\myBoardSupport\bsp.h
 .\objects\blinky.o: ..\myProgram\LEDFunctions.h
+.\objects\blinky.o: ..\myProgram\ButtonFunctions.h
